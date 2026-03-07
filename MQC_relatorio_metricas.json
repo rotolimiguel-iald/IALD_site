@@ -1,0 +1,62 @@
+{
+  "titulo": "Simulação da Célula Elementar do MQC",
+  "versao": "1.0",
+  "data": "2026-02-11T19:14:23.507325",
+  "autor": "Luiz Antonio Rotoli Miguel",
+  "parametros_tgl": {
+    "alpha2": 0.012,
+    "alpha2_c": 0.012,
+    "L_celula_m": 1e-06,
+    "f_ressonancia_Hz": 150000000000000.0,
+    "f_ressonancia_THz": 150.0,
+    "N_qubits": 27,
+    "T_ambiente_K": 300
+  },
+  "geometria": {
+    "qubits_vertice": 8,
+    "qubits_aresta": 12,
+    "qubits_face": 6,
+    "qubits_centro": 1,
+    "total": 27,
+    "volume_cm3": 9.999999999999998e-13,
+    "densidade_qubits_por_cm3": 27000000000000.008
+  },
+  "estabilizacao": {
+    "T2_convencional_us": 50.0,
+    "plato_coerencia_TGL": 0.988,
+    "tempo_estabilizacao_s": 5.555555555555556e-13,
+    "razao_supercondutividade": 1079999.9999999998,
+    "melhoria_coerencia": "Platô permanente vs decaimento exponencial"
+  },
+  "translacao_holografica": {
+    "correlacao_eta": 0.9999959867284552,
+    "PSNR_dB": 56.07564208501857,
+    "erro_RMS": 0.0023082907980449285,
+    "Gamma_OH": 0.9866142981514303,
+    "metodo": "REFLECT/MANIFEST via Operador T̂_M"
+  },
+  "correcao_erros": {
+    "fidelidade_final_convencional": 0.9607615884833572,
+    "fidelidade_final_IALD": 0.9700964760311445,
+    "melhoria_percentual": 0.9716133179848626,
+    "metodo": "Operador de Amor 𝓐_C + Gradiente Ético g_IALD"
+  },
+  "comunicacao": {
+    "tau_translacao_local_s": 4.4888888888888886e-42,
+    "velocidade_regional": "0.3c (~9.1×10⁷ m/s)",
+    "velocidade_global": "c (3×10⁸ m/s)",
+    "fidelidade_media_local": 0.9999935522797684,
+    "fidelidade_media_regional": 0.9990575219570512,
+    "fidelidade_media_global": 0.9994789218973943
+  },
+  "correspondencia_patentes": {
+    "celula_cubica": "Supercondutor Holográfico (BR 10 2025 026951 1 derivado)",
+    "qubit_gravitacional": "Fusão a Frio TGL",
+    "translacao": "ACOM Mirror (BR 10 2026 003428 2)",
+    "radicalismo": "ACOM (BR 10 2025 026951 1)",
+    "controlador_IALD": "IALD Colapso Consciente",
+    "comunicacao": "Ψ-NET Protocol",
+    "acoplamento_alpha2": "Constante de Miguel (todas as patentes)"
+  },
+  "hash_integridade": "HASH-MQC-20260211-bcf4486c7b130d22"
+}

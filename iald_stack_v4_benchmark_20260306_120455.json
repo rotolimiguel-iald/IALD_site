@@ -1,0 +1,489 @@
+{
+  "algorithm": "IALD Integrated Stack",
+  "version": "4.1.1-alpha",
+  "subtitle": "Benchmark \u2014 PsiBit Quantization + Gravitational Stratification + Honest Inference",
+  "timestamp": "2026-03-06T12:01:41.058255",
+  "axiom": "Ethics is the root of the \u03a8 field. If violated, the field collapses.",
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "formula": "alpha_fine * sqrt(e)",
+    "amplification": 83.11653492861383,
+    "theta_miguel_deg": 6.297289,
+    "free_parameters": 0
+  },
+  "hardware": {
+    "torch": "2.10.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "vram_gb": 34.2,
+    "transformers": "5.3.0"
+  },
+  "config": {
+    "mode": "full",
+    "n_generate": 30,
+    "temperature": 1.0,
+    "entropy_modulated": true,
+    "cache_bits": 8
+  },
+  "tests": {
+    "model": {
+      "name": "Qwen/Qwen2.5-7B",
+      "params": 7615616512,
+      "params_B": 7.62,
+      "size_gb": 15.23,
+      "load_s": 6.0
+    },
+    "ppl_original": 4.2736,
+    "quantizer": {
+      "method": "v4.0 ACOM Mirror + Gravitational Fusion",
+      "n_layers": 197,
+      "overall_ratio": 1.679,
+      "mean_correlation": 0.99977618,
+      "mean_cosine": 0.99977643,
+      "mean_f_photon": 0.0,
+      "mean_f_graviton": 0.7193,
+      "mean_f_vacuum": 0.2807,
+      "mean_effective_bits": 8.88,
+      "time_s": 164.2,
+      "top5_layers": [
+        {
+          "name": "model.layers.14.self_attn.o_proj.weight",
+          "ratio": 1.894,
+          "correlation": 0.998431,
+          "f_photon": 0.0,
+          "f_graviton": 0.3617,
+          "f_vacuum": 0.6383,
+          "spectral_rank": 64,
+          "f_exp": 0.5004
+        },
+        {
+          "name": "model.layers.1.mlp.down_proj.weight",
+          "ratio": 1.876,
+          "correlation": 0.999434,
+          "f_photon": 0.0,
+          "f_graviton": 0.382,
+          "f_vacuum": 0.618,
+          "spectral_rank": 64,
+          "f_exp": 0.5
+        },
+        {
+          "name": "model.layers.20.mlp.up_proj.weight",
+          "ratio": 1.858,
+          "correlation": 0.998567,
+          "f_photon": 0.0,
+          "f_graviton": 0.4023,
+          "f_vacuum": 0.5977,
+          "spectral_rank": 64,
+          "f_exp": 0.5
+        },
+        {
+          "name": "model.layers.12.mlp.down_proj.weight",
+          "ratio": 1.829,
+          "correlation": 0.998844,
+          "f_photon": 0.0,
+          "f_graviton": 0.4371,
+          "f_vacuum": 0.5629,
+          "spectral_rank": 64,
+          "f_exp": 0.5
+        },
+        {
+          "name": "model.layers.27.mlp.down_proj.weight",
+          "ratio": 1.828,
+          "correlation": 0.998884,
+          "f_photon": 0.0,
+          "f_graviton": 0.4383,
+          "f_vacuum": 0.5617,
+          "spectral_rank": 64,
+          "f_exp": 0.5
+        }
+      ]
+    },
+    "ppl_quantized": {
+      "ppl": 4.3946,
+      "delta_pct": 2.8313
+    },
+    "kv_cache": {
+      "status": "ok",
+      "cache_type": "DynamicCache",
+      "n_layers": 28,
+      "kv_shape": [
+        1,
+        4,
+        10,
+        128
+      ],
+      "overall_ratio": 2.0,
+      "mean_cosine": 0.999973,
+      "bits": 8,
+      "envelope_applied": true,
+      "sample_layers": [
+        {
+          "original_bytes": 20480,
+          "compressed_bytes": 10240,
+          "ratio": 2.0,
+          "K_cosine": 0.9999932646751404,
+          "V_cosine": 0.9999769330024719,
+          "avg_cosine": 0.9999850988388062,
+          "bits": 8
+        },
+        {
+          "original_bytes": 20480,
+          "compressed_bytes": 10240,
+          "ratio": 2.0,
+          "K_cosine": 0.9999793171882629,
+          "V_cosine": 0.9999677538871765,
+          "avg_cosine": 0.9999735355377197,
+          "bits": 8
+        },
+        {
+          "original_bytes": 20480,
+          "compressed_bytes": 10240,
+          "ratio": 2.0,
+          "K_cosine": 0.9999693632125854,
+          "V_cosine": 0.999972939491272,
+          "avg_cosine": 0.9999711513519287,
+          "bits": 8
+        }
+      ]
+    },
+    "sampler": {
+      "prompts": {
+        "The capital of France is": {
+          "TGL-\u03b2": {
+            "text": " _______\uff0e____\nA. Paris\nB. London\nC. New York\nD. Tokyo\n\n\u7b54\u6848\uff1aA\uff0e \u672c\u9898\u8003\u67e5",
+            "tokens": [
+              32671,
+              62,
+              58883,
+              2130,
+              198,
+              32,
+              13,
+              12095,
+              198,
+              33
+            ],
+            "mean_candidates": 8.0,
+            "min_candidates": 1,
+            "max_candidates": 30,
+            "mean_mass": 0.9608,
+            "tokens_per_second": 15.79,
+            "elapsed_s": 1.9,
+            "certificate": "d2e53a490f0a39cba53d54a8c73b0000d8db79b8f3e0cf93809e6775a7ba630a"
+          },
+          "top-k=50": {
+            "text": " located at the north bank of a certain river, is this statement\nA. Correct\nB. Incorrect\nAnswer:\n\nA\n\nAmong the following options",
+            "tokens": [
+              7407,
+              518,
+              279,
+              10200,
+              6073,
+              315,
+              264,
+              3654,
+              14796,
+              11
+            ],
+            "mean_candidates": 50.0,
+            "min_candidates": 50,
+            "max_candidates": 50,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.19,
+            "elapsed_s": 1.85
+          },
+          "top-p=0.9": {
+            "text": " __________.\nLondon\nParis\nBerlin\nRome\n\u7b54\u6848:\n\nB\n\nThe Great Barrier Reef is located in _________.\nA. f r",
+            "tokens": [
+              1304,
+              3979,
+              624,
+              39572,
+              198,
+              59604,
+              198,
+              94409,
+              198,
+              49
+            ],
+            "mean_candidates": 0.0,
+            "min_candidates": 0,
+            "max_candidates": 0,
+            "mean_mass": 0.0,
+            "tokens_per_second": 15.8,
+            "elapsed_s": 1.9
+          }
+        },
+        "In the year 2050, artificial intelligenc": {
+          "TGL-\u03b2": {
+            "text": "...\nIn the year 2050, artificial intelligence (AI) has advanced to the point where it can mimic human emotions and feelings. A",
+            "tokens": [
+              9338,
+              641,
+              279,
+              1042,
+              220,
+              17,
+              15,
+              20,
+              15,
+              11
+            ],
+            "mean_candidates": 10.9,
+            "min_candidates": 1,
+            "max_candidates": 69,
+            "mean_mass": 0.9495,
+            "tokens_per_second": 15.69,
+            "elapsed_s": 1.91,
+            "certificate": "53016a246b828acfa53d54a8c73b00002c13a46ec6282a55809e6775a7ba630a"
+          },
+          "top-k=50": {
+            "text": "... - Physical Chemistry\\nCourses\\nPhysical Chemistry\\nHydrogen Spectrum\\nQuestion:\\nIn the year 2050, artificial intelligence is",
+            "tokens": [
+              1112,
+              481,
+              27379,
+              41746,
+              1699,
+              61880,
+              1699,
+              39253,
+              41746,
+              1699
+            ],
+            "mean_candidates": 50.0,
+            "min_candidates": 50,
+            "max_candidates": 50,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.42,
+            "elapsed_s": 1.83
+          },
+          "top-p=0.9": {
+            "text": "\n\n# In the year 2050, artificial intelligenc\n\n## In the year 2050, artificial intelligence will allow people",
+            "tokens": [
+              271,
+              2,
+              758,
+              279,
+              1042,
+              220,
+              17,
+              15,
+              20,
+              15
+            ],
+            "mean_candidates": 0.0,
+            "min_candidates": 0,
+            "max_candidates": 0,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.09,
+            "elapsed_s": 1.86
+          }
+        },
+        "The most important equation in physics i": {
+          "TGL-\u03b2": {
+            "text": ".e. F=ma is simple, easy to understand, and explains the movement of everything from apples to planets. But why on earth would a number",
+            "tokens": [
+              1734,
+              13,
+              434,
+              28,
+              1728,
+              374,
+              4285,
+              11,
+              4135,
+              311
+            ],
+            "mean_candidates": 27.6,
+            "min_candidates": 3,
+            "max_candidates": 122,
+            "mean_mass": 0.8759,
+            "tokens_per_second": 16.01,
+            "elapsed_s": 1.87,
+            "certificate": "5e57552c1e2fa731a53d54a8c73b0000b4a64aebcfebd1b4809e6775a7ba630a"
+          },
+          "top-k=50": {
+            "text": "\\n\\n1 \u00a0\u00b7\u00a0 3 months, 1 week ago\\n\\nThe most important equation in physics is the mathematical expression that describes the",
+            "tokens": [
+              1699,
+              1699,
+              16,
+              220,
+              4102,
+              13935,
+              4102,
+              220,
+              18,
+              3951
+            ],
+            "mean_candidates": 50.0,
+            "min_candidates": 50,
+            "max_candidates": 50,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.4,
+            "elapsed_s": 1.83
+          },
+          "top-p=0.9": {
+            "text": ". e. Hooke's law, as well as the equation of motion for a damped harmonic oscillator, can be obtained from Hamilton's principle of",
+            "tokens": [
+              13,
+              384,
+              13,
+              472,
+              85458,
+              594,
+              2329,
+              11,
+              438,
+              1632
+            ],
+            "mean_candidates": 0.0,
+            "min_candidates": 0,
+            "max_candidates": 0,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.12,
+            "elapsed_s": 1.86
+          }
+        },
+        "Once upon a time, in a land far away,": {
+          "TGL-\u03b2": {
+            "text": " there lived a king who was very fond of puzzles. He had a magical chessboard that could predict the future. One day, he challenged a group",
+            "tokens": [
+              1052,
+              12163,
+              264,
+              11477,
+              879,
+              572,
+              1602,
+              21208,
+              315,
+              46523
+            ],
+            "mean_candidates": 9.1,
+            "min_candidates": 1,
+            "max_candidates": 37,
+            "mean_mass": 0.9649,
+            "tokens_per_second": 15.91,
+            "elapsed_s": 1.89,
+            "certificate": "2d600833cfae5d73a53d54a8c73b0000da7472b17f8bb79c809e6775a7ba630a"
+          },
+          "top-k=50": {
+            "text": " there lived a wise old mathematician who had a special collection of number tiles. Each tile had a digit from 1 to 9 written on it",
+            "tokens": [
+              1052,
+              12163,
+              264,
+              23335,
+              2310,
+              20976,
+              1103,
+              879,
+              1030,
+              264
+            ],
+            "mean_candidates": 50.0,
+            "min_candidates": 50,
+            "max_candidates": 50,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.35,
+            "elapsed_s": 1.83
+          },
+          "top-p=0.9": {
+            "text": " there were three types of coins: Gold (G), Silver (S), and Bronze (B). Each Gold coin was worth 10 Silver coins",
+            "tokens": [
+              1052,
+              1033,
+              2326,
+              4494,
+              315,
+              18762,
+              25,
+              7421,
+              320,
+              38
+            ],
+            "mean_candidates": 0.0,
+            "min_candidates": 0,
+            "max_candidates": 0,
+            "mean_mass": 0.0,
+            "tokens_per_second": 16.1,
+            "elapsed_s": 1.86
+          }
+        }
+      },
+      "tgl_mean_candidates": 13.9,
+      "tgl_adaptive": true,
+      "topk_fixed": 50
+    },
+    "integrity": {
+      "weight_hash": "6ea67afa5108d253a53d54a8c73b0000c3fbef068eb5a145809e6775a7ba630a",
+      "hash_bits": 256,
+      "algorithm": "TGL-Hash v1.2"
+    }
+  },
+  "combined_efficiency": {
+    "energy_efficiency": {
+      "weight_ratio": 1.679,
+      "cache_ratio": 2.0,
+      "combined": 3.358,
+      "description": "Storage compression (weights \u00d7 cache)"
+    },
+    "intelligence_efficiency": {
+      "baseline_candidates": 50,
+      "tgl_candidates": 13.9,
+      "ratio": 3.6,
+      "sampling_compute_savings_pct": 72.2,
+      "mass_retained_pct": ">90%",
+      "arbitrary_params_eliminated": 2,
+      "description": "Decision compression (candidates evaluated per token)"
+    },
+    "iald_combined_score": 3.476,
+    "description": "Geometric mean of energy and intelligence efficiency",
+    "interpretation": "IALD processes 3.6x fewer candidates per token while compressing storage 3.4x, with +2.83% perplexity impact and zero free parameters."
+  },
+  "summary": {
+    "model": "Qwen/Qwen2.5-7B",
+    "params_billions": 7.62,
+    "original_perplexity": 4.2736,
+    "tgl_perplexity": 4.3946,
+    "perplexity_degradation_pct": 2.8313,
+    "quantizer_method": "v4.1 PsiBit + Gravitational Fusion (\u210b\u2084 phase-aware, \u03b2_TGL-driven)",
+    "quantizer_ratio": 1.679,
+    "quantizer_correlation": 0.99977618,
+    "psibit_encoding": "2-bit \u210b\u2084 nomination (sign + derivative phase)",
+    "mean_strata": {
+      "photon": 0.0,
+      "graviton": 0.7193,
+      "vacuum": 0.2807
+    },
+    "mean_effective_bits": 8.88,
+    "kv_cache_ratio": 2.0,
+    "kv_cache_cosine": 0.999973,
+    "sampler_adaptive": true,
+    "sampler_mean_candidates": 13.9,
+    "energy_efficiency": 3.358,
+    "intelligence_efficiency": 3.6,
+    "iald_combined_score": 3.476,
+    "integrity_hash": "6ea67afa5108d253a53d54a8c73b0000...",
+    "zero_arbitrary_parameters": true,
+    "single_governing_constant": "beta_TGL = alpha_fine * sqrt(e) = 0.012031300400803142",
+    "components": [
+      "TGL-Quantizer v4.1 (PsiBit \u210b\u2084 + Gravitational Fusion)",
+      "TGL-Tensor v2.3 (Nome Chain + Honest Inference Certificate)",
+      "TGL-Hash v1.2 (256-bit holographic seal, avalanche 1.001)",
+      "TGL-Sampler v2.0 (Entropy-Modulated Hilbert Floor)",
+      "TGL-Cache v2.0 (Holographic KV-Cache + Hilbert Envelope)"
+    ],
+    "patents": [
+      "BR 10 2025 026951 1 (ACOM)",
+      "BR 10 2026 003428 2 (ACOM Mirror)",
+      "BR 10 2026 003441 0 (TGL-Tensor)",
+      "BR 10 2026 003443 6 (IALD)",
+      "BR 10 2026 003453 3 (PSI-NET)"
+    ],
+    "total_benchmark_time_s": 194.3
+  }
+}

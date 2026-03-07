@@ -1,0 +1,218 @@
+{
+  "title": "ACOM v17 Mirror vs v18 Dirac — Direct Comparison",
+  "timestamp": "2026-03-04T19:50:23.451199",
+  "hardware": {
+    "gpu": "CPU",
+    "torch": "2.10.0+cpu",
+    "backend": "zstd"
+  },
+  "configuration": {
+    "angular_bits": 8,
+    "v17_quantization": "uniform (linear)",
+    "v17_constant": "ALPHA2 = 0.012 (hardcoded)",
+    "v18_quantization": "bifactored (p = 0.98811173)",
+    "v18_constant": "BETA_TGL = α × √e = 0.0120313004 (derived)"
+  },
+  "summary": {
+    "v17_avg_ratio": 20.18247037023042,
+    "v18_avg_ratio": 20.10875972693336,
+    "v17_avg_correlation": 0.9999853883470807,
+    "v18_avg_correlation": 0.9999854394367763,
+    "v17_avg_psnr": 59.7542976133406,
+    "v18_avg_psnr": 59.74843496759644,
+    "wins_v17": 2,
+    "wins_v18": 3,
+    "ties": 2
+  },
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "p_warp": 0.9881117309355566,
+    "p_deviation_from_unity": 0.011888269064443402
+  },
+  "results": [
+    {
+      "name": "embeddings",
+      "n_elements": 384000,
+      "v17": {
+        "ratio": 7.622223545524921,
+        "correlation": 0.9999790191650391,
+        "mse": 4.1873310692608356e-05,
+        "psnr_db": 58.42381477099694,
+        "time_s": 0.006944179534912109,
+        "compressed_bytes": 403032
+      },
+      "v18": {
+        "ratio": 7.6119868970746385,
+        "correlation": 0.9999792575836182,
+        "mse": 4.16243783547543e-05,
+        "psnr_db": 58.44971016097319,
+        "time_s": 0.002736330032348633,
+        "compressed_bytes": 403574
+      },
+      "delta": {
+        "ratio": -0.010236648450282715,
+        "correlation": 2.384185791015625e-07,
+        "psnr_db": 0.02589538997624885
+      },
+      "winner": "v18"
+    },
+    {
+      "name": "audio",
+      "n_elements": 44100,
+      "v17": {
+        "ratio": 48.675496688741724,
+        "correlation": 0.999990701675415,
+        "mse": 9.277655408368446e-07,
+        "psnr_db": 60.10955528748008,
+        "time_s": 0.001491546630859375,
+        "compressed_bytes": 7248
+      },
+      "v18": {
+        "ratio": 48.361891706648386,
+        "correlation": 0.9999909400939941,
+        "mse": 9.168707038043067e-07,
+        "psnr_db": 60.16085670408443,
+        "time_s": 0.001203775405883789,
+        "compressed_bytes": 7295
+      },
+      "delta": {
+        "ratio": -0.313604982093338,
+        "correlation": 2.384185791015625e-07,
+        "psnr_db": 0.05130141660435328
+      },
+      "winner": "v18"
+    },
+    {
+      "name": "financial",
+      "n_elements": 2000,
+      "v17": {
+        "ratio": 9.280742459396752,
+        "correlation": 0.9999756217002869,
+        "mse": 0.05373067781329155,
+        "psnr_db": 56.14155706339816,
+        "time_s": 0.0005114078521728516,
+        "compressed_bytes": 1724
+      },
+      "v18": {
+        "ratio": 9.253903990746096,
+        "correlation": 0.9999753832817078,
+        "mse": 0.05433611199259758,
+        "psnr_db": 56.09289466217736,
+        "time_s": 0.0002841949462890625,
+        "compressed_bytes": 1729
+      },
+      "delta": {
+        "ratio": -0.026838468650655756,
+        "correlation": -2.384185791015625e-07,
+        "psnr_db": -0.048662401220802565
+      },
+      "winner": "v17"
+    },
+    {
+      "name": "kv_cache",
+      "n_elements": 131072,
+      "v17": {
+        "ratio": 7.494003802118323,
+        "correlation": 0.9999824166297913,
+        "mse": 3.5056014894507825e-05,
+        "psnr_db": 58.011974048865014,
+        "time_s": 0.0018334388732910156,
+        "compressed_bytes": 139922
+      },
+      "v18": {
+        "ratio": 7.489133151921608,
+        "correlation": 0.999982476234436,
+        "mse": 3.47931963915471e-05,
+        "psnr_db": 58.04465621152151,
+        "time_s": 0.00174713134765625,
+        "compressed_bytes": 140013
+      },
+      "delta": {
+        "ratio": -0.004870650196715509,
+        "correlation": 5.960464477539063e-08,
+        "psnr_db": 0.03268216265649926
+      },
+      "winner": "TIE"
+    },
+    {
+      "name": "sparse",
+      "n_elements": 50000,
+      "v17": {
+        "ratio": 52.93806246691371,
+        "correlation": 0.9999843835830688,
+        "mse": 1.4927653637641924e-06,
+        "psnr_db": 70.93563361085083,
+        "time_s": 0.00165557861328125,
+        "compressed_bytes": 7556
+      },
+      "v18": {
+        "ratio": 52.79134221987594,
+        "correlation": 0.9999845623970032,
+        "mse": 1.4805596038058866e-06,
+        "psnr_db": 70.97129015046144,
+        "time_s": 0.0020933151245117188,
+        "compressed_bytes": 7577
+      },
+      "delta": {
+        "ratio": -0.14672024703776998,
+        "correlation": 1.7881393432617188e-07,
+        "psnr_db": 0.035656539610613436
+      },
+      "winner": "v18"
+    },
+    {
+      "name": "gradients",
+      "n_elements": 10000,
+      "v17": {
+        "ratio": 7.215657977811852,
+        "correlation": 0.9999875426292419,
+        "mse": 2.4611612747804656e-09,
+        "psnr_db": 57.346069867900965,
+        "time_s": 0.0007085800170898438,
+        "compressed_bytes": 11087
+      },
+      "v18": {
+        "ratio": 7.2059088452531075,
+        "correlation": 0.9999875426292419,
+        "mse": 2.4583859392635077e-09,
+        "psnr_db": 57.35096996531184,
+        "time_s": 0.0007131099700927734,
+        "compressed_bytes": 11102
+      },
+      "delta": {
+        "ratio": -0.009749132558744655,
+        "correlation": 0.0,
+        "psnr_db": 0.004900097410875048
+      },
+      "winner": "TIE"
+    },
+    {
+      "name": "gravitational",
+      "n_elements": 4096,
+      "v17": {
+        "ratio": 8.051105651105651,
+        "correlation": 0.9999980330467224,
+        "mse": 1.9938743207603693e-06,
+        "psnr_db": 57.31147864389216,
+        "time_s": 0.0021080970764160156,
+        "compressed_bytes": 4070
+      },
+      "v18": {
+        "ratio": 8.047151277013752,
+        "correlation": 0.9999979138374329,
+        "mse": 2.06053005058493e-06,
+        "psnr_db": 57.16866691864531,
+        "time_s": 0.00043654441833496094,
+        "compressed_bytes": 4072
+      },
+      "delta": {
+        "ratio": -0.003954374091899027,
+        "correlation": -1.1920928955078125e-07,
+        "psnr_db": -0.14281172524685104
+      },
+      "winner": "v17"
+    }
+  ]
+}

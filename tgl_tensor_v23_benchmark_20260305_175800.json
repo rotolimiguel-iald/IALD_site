@@ -1,0 +1,206 @@
+{
+  "algorithm": "TGL-Tensor",
+  "version": "2.3.0",
+  "subtitle": "Cadeia de NOMEs \u2014 Certificado de Infer\u00eancia Honesta",
+  "timestamp": "2026-03-05T17:57:55.091921",
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "cci": 0.9879686995991969
+  },
+  "tests": {
+    "determinism_mlp": {
+      "passed": true,
+      "n_trials": 10,
+      "certificate": "1740767b4045e58e3ead1f7c50e65db50e8e5b6de583cf03a8853693cf7461ce",
+      "unique_certificates": 1
+    },
+    "determinism_transformer": {
+      "passed": true,
+      "n_trials": 10,
+      "certificate": "00469437534a8b40326b325b61bbd090e9cd56e187d2e98db72bdfa1b8e80d3d"
+    },
+    "adulteration_mlp": {
+      "Sem adultera\u00e7\u00e3o (controle)": {
+        "state": "HONESTA",
+        "certificate_changed": false,
+        "divergence_layer": "-",
+        "divergence_type": "-"
+      },
+      "Ru\u00eddo \u03c3=0.001 na camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Ru\u00eddo \u03c3=0.01 na camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Ru\u00eddo \u03c3=0.1 na camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Zerar 1% ativa\u00e7\u00f5es camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Zerar 10% ativa\u00e7\u00f5es camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Escalar \u00d71.01 camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Escalar \u00d71.10 camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Escalar \u00d72.00 camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Permutar posi\u00e7\u00f5es camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Clampar [-0.1, 0.1] camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Ru\u00eddo \u03c3=0.0001 camada 3": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 3,
+        "divergence_type": "MICRO"
+      }
+    },
+    "adulteration_transformer": {
+      "Sem adultera\u00e7\u00e3o (controle)": {
+        "state": "HONESTA",
+        "certificate_changed": false,
+        "divergence_layer": "-",
+        "divergence_type": "-"
+      },
+      "Ru\u00eddo \u03c3=0.001 camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Ru\u00eddo \u03c3=0.01 camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Zerar 5% camada 3": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 3,
+        "divergence_type": "MICRO"
+      },
+      "Escalar \u00d71.05 camada 1": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 1,
+        "divergence_type": "MICRO"
+      },
+      "Permutar camada 2": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 2,
+        "divergence_type": "MICRO"
+      },
+      "Clampar [-0.05, 0.05] camada 3": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 3,
+        "divergence_type": "MICRO"
+      },
+      "Ru\u00eddo \u03c3=0.0001 \u00faltima camada": {
+        "state": "ADULTERADA",
+        "certificate_changed": true,
+        "divergence_layer": 4,
+        "divergence_type": "MICRO"
+      }
+    },
+    "performance": {
+      "bare_ms": 0.1696,
+      "macro_only_ms": 0.3521,
+      "full_chain_ms": 35.0728,
+      "overhead_macro_pct": 107.54,
+      "overhead_full_pct": 20574.96
+    },
+    "chain_anatomy": {
+      "certificate": "1740767b4045e58e3ead1f7c50e65db50e8e5b6de583cf03a8853693cf7461ce",
+      "n_entries": 4,
+      "n_checkpoints": 4,
+      "layers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "macros": [
+        {
+          "layer": 0,
+          "label": "input",
+          "f_exp": 0.511719,
+          "s_psi": 1.801282,
+          "has_micro": true
+        },
+        {
+          "layer": 1,
+          "label": "layer_1",
+          "f_exp": 0.241211,
+          "s_psi": 0.957613,
+          "has_micro": true
+        },
+        {
+          "layer": 2,
+          "label": "layer_2",
+          "f_exp": 0.207031,
+          "s_psi": 0.968857,
+          "has_micro": true
+        },
+        {
+          "layer": 3,
+          "label": "layer_3",
+          "f_exp": 0.507812,
+          "s_psi": 1.759779,
+          "has_micro": true
+        }
+      ]
+    }
+  },
+  "summary": {
+    "determinism_mlp": true,
+    "determinism_transformer": true,
+    "mlp_attacks_detected": "11/11",
+    "transformer_attacks_detected": "7/7",
+    "overhead_macro_pct": 107.54,
+    "overhead_full_pct": 20574.96,
+    "total_detection_rate": 1.0
+  }
+}

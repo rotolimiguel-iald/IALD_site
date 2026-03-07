@@ -1,0 +1,291 @@
+{
+  "version": "ACOM_v18.0_DIRAC",
+  "paradigm": "Factored Dimensional Reflection",
+  "equation": "β_TGL = α × √e (ZERO free parameters)",
+  "timestamp": "2026-03-04T19:39:29.626317",
+  "elapsed_total_s": 1.2281115055084229,
+  "hardware": {
+    "gpu": "CPU",
+    "cuda": null,
+    "torch": "2.10.0+cpu",
+    "backend": "zstd"
+  },
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "alpha_fine_inverse": 137.0359990836958,
+    "sqrt_e": 1.6487212707001282,
+    "euler_e": 2.718281828459045,
+    "beta_tgl": 0.012031300400803142,
+    "beta_tgl_measured": 0.012031,
+    "discrepancy": 3.004008031423644e-07,
+    "amplification": 83.11653492861383,
+    "theta_miguel_deg": 6.297289216477979,
+    "cci": 0.9879686995991969,
+    "hilbert_floor": 0.012031300400803142,
+    "landauer_half_nat": 0.5,
+    "factorization": "beta_tgl = alpha_fine × sqrt(e)",
+    "quadratic": "beta_tgl^2 = alpha_fine^2 × e"
+  },
+  "configuration": {
+    "angular_bits": 8,
+    "alpha_bits_fraction": 0.618,
+    "bits_alpha": 4,
+    "bits_entropy": 4
+  },
+  "summary": {
+    "n_tests": 7,
+    "avg_compression_ratio": 20.10875972693336,
+    "avg_correlation": 0.9999854394367763,
+    "avg_psnr_db": 59.74843496759644,
+    "avg_throughput_mbps": 7.011454356097688,
+    "avg_alpha_fraction": 0.6712882755953012,
+    "avg_sqrt_e_fraction": 0.32871172440469865
+  },
+  "results": [
+    {
+      "name": "embeddings",
+      "desc": "Embeddings (randn 384k)",
+      "n_elements": 384000,
+      "compression_ratio": 7.6119868970746385,
+      "metrics": {
+        "correlation": 0.9999792575836182,
+        "mse": 4.16243783547543e-05,
+        "psnr_db": 58.44971016097319,
+        "mae": 0.0052483417093753815,
+        "mae_relative": 0.006574806425110304
+      },
+      "f_exp": 0.5000051856040955,
+      "state_counts": {
+        "COLLAPSE_PLUS": 47822,
+        "ASCEND_PLUS": 144210,
+        "EMERGE_MINUS": 143791,
+        "FALL_MINUS": 48177
+      },
+      "state_entropy": 1.8112703561782837,
+      "alpha_fraction": 0.7500026041666666,
+      "sqrt_e_fraction": 0.24999739583333333,
+      "beta_emergent": 0.33332870367533507,
+      "theta_variance": 0.011076259426772594,
+      "theta_entropy_nat": 4.690040111541748,
+      "landauer_cost_nat": 2.345020055770874,
+      "tetelestai_simple": true,
+      "tetelestai_form": false,
+      "elapsed_s": 0.3429243564605713,
+      "throughput_mbps": 8.95824382877631
+    },
+    {
+      "name": "audio",
+      "desc": "Áudio (senoidal + decay)",
+      "n_elements": 44100,
+      "compression_ratio": 48.361891706648386,
+      "metrics": {
+        "correlation": 0.9999909400939941,
+        "mse": 9.168707038043067e-07,
+        "psnr_db": 60.16085670408443,
+        "mae": 0.0007046243408694863,
+        "mae_relative": 0.005572030932409196
+      },
+      "f_exp": -0.007800453342497349,
+      "state_counts": {
+        "COLLAPSE_PLUS": 11111,
+        "ASCEND_PLUS": 10940,
+        "EMERGE_MINUS": 10938,
+        "FALL_MINUS": 11111
+      },
+      "state_entropy": 1.9999561309814453,
+      "alpha_fraction": 0.4960997732426304,
+      "sqrt_e_fraction": 0.5039002267573696,
+      "beta_emergent": 1.0157235577073158,
+      "theta_variance": 0.02775358408689499,
+      "theta_entropy_nat": 4.806501865386963,
+      "landauer_cost_nat": 2.4032509326934814,
+      "tetelestai_simple": false,
+      "tetelestai_form": false,
+      "elapsed_s": 0.05774688720703125,
+      "throughput_mbps": 6.109420214030916
+    },
+    {
+      "name": "financial",
+      "desc": "Financeiro (preços)",
+      "n_elements": 2000,
+      "compression_ratio": 9.253903990746096,
+      "metrics": {
+        "correlation": 0.9999753832817078,
+        "mse": 0.05433611199259758,
+        "psnr_db": 56.09289466217736,
+        "mae": 0.19988079369068146,
+        "mae_relative": 0.0030209364591938202
+      },
+      "f_exp": -0.03999999910593033,
+      "state_counts": {
+        "COLLAPSE_PLUS": 1040,
+        "ASCEND_PLUS": 960,
+        "EMERGE_MINUS": 0,
+        "FALL_MINUS": 0
+      },
+      "state_entropy": 0.9988455772399902,
+      "alpha_fraction": 0.48,
+      "sqrt_e_fraction": 0.52,
+      "beta_emergent": 1.083333333107639,
+      "theta_variance": 0.024232903495430946,
+      "theta_entropy_nat": 4.6276164054870605,
+      "landauer_cost_nat": 2.3138082027435303,
+      "tetelestai_simple": false,
+      "tetelestai_form": false,
+      "elapsed_s": 0.003482341766357422,
+      "throughput_mbps": 4.594609338627961
+    },
+    {
+      "name": "kv_cache",
+      "desc": "KV-Cache (LLM 131k)",
+      "n_elements": 131072,
+      "compression_ratio": 7.489133151921608,
+      "metrics": {
+        "correlation": 0.999982476234436,
+        "mse": 3.47931963915471e-05,
+        "psnr_db": 58.04465621152151,
+        "mae": 0.004812577739357948,
+        "mae_relative": 0.0060421731321628975
+      },
+      "f_exp": 0.500396728515625,
+      "state_counts": {
+        "COLLAPSE_PLUS": 16417,
+        "ASCEND_PLUS": 49245,
+        "EMERGE_MINUS": 49085,
+        "FALL_MINUS": 16325
+      },
+      "state_entropy": 1.8109607696533203,
+      "alpha_fraction": 0.7501983642578125,
+      "sqrt_e_fraction": 0.2498016357421875,
+      "beta_emergent": 0.3329807789650722,
+      "theta_variance": 0.013054553419351578,
+      "theta_entropy_nat": 4.770348072052002,
+      "landauer_cost_nat": 2.385174036026001,
+      "tetelestai_simple": false,
+      "tetelestai_form": false,
+      "elapsed_s": 0.12688708305358887,
+      "throughput_mbps": 8.263851408398674
+    },
+    {
+      "name": "sparse",
+      "desc": "Sparse (95% zeros)",
+      "n_elements": 50000,
+      "compression_ratio": 52.79134221987594,
+      "metrics": {
+        "correlation": 0.9999845623970032,
+        "mse": 1.4805596038058866e-06,
+        "psnr_db": 70.97129015046144,
+        "mae": 0.00021969748195260763,
+        "mae_relative": 0.005785753243030473
+      },
+      "f_exp": 0.953000009059906,
+      "state_counts": {
+        "COLLAPSE_PLUS": 1156,
+        "ASCEND_PLUS": 47613,
+        "EMERGE_MINUS": 1212,
+        "FALL_MINUS": 19
+      },
+      "state_entropy": 0.32725459337234497,
+      "alpha_fraction": 0.9765,
+      "sqrt_e_fraction": 0.0235,
+      "beta_emergent": 0.024065540192107982,
+      "theta_variance": 0.003973950631916523,
+      "theta_entropy_nat": 0.42895805835723877,
+      "landauer_cost_nat": 0.21447902917861938,
+      "tetelestai_simple": true,
+      "tetelestai_form": true,
+      "elapsed_s": 0.06981325149536133,
+      "throughput_mbps": 5.729571269525781
+    },
+    {
+      "name": "gradients",
+      "desc": "Gradientes (pequenos)",
+      "n_elements": 10000,
+      "compression_ratio": 7.2059088452531075,
+      "metrics": {
+        "correlation": 0.9999875426292419,
+        "mse": 2.4583859392635077e-09,
+        "psnr_db": 57.35096996531184,
+        "mae": 4.084517786395736e-05,
+        "mae_relative": 0.005127700983009135
+      },
+      "f_exp": 0.5022000074386597,
+      "state_counts": {
+        "COLLAPSE_PLUS": 1286,
+        "ASCEND_PLUS": 3733,
+        "EMERGE_MINUS": 3778,
+        "FALL_MINUS": 1203
+      },
+      "state_entropy": 1.8093109130859375,
+      "alpha_fraction": 0.7511,
+      "sqrt_e_fraction": 0.2489,
+      "beta_emergent": 0.33138064168134995,
+      "theta_variance": 0.01811118982732296,
+      "theta_entropy_nat": 4.919199466705322,
+      "landauer_cost_nat": 2.459599733352661,
+      "tetelestai_simple": false,
+      "tetelestai_form": false,
+      "elapsed_s": 0.009666204452514648,
+      "throughput_mbps": 8.276257800360112
+    },
+    {
+      "name": "gravitational",
+      "desc": "GW simulado (sin + ruído β_TGL)",
+      "n_elements": 4096,
+      "compression_ratio": 8.047151277013752,
+      "metrics": {
+        "correlation": 0.9999979138374329,
+        "mse": 2.06053005058493e-06,
+        "psnr_db": 57.16866691864531,
+        "mae": 0.0011842031963169575,
+        "mae_relative": 0.0018611628894589034
+      },
+      "f_exp": -0.009765625,
+      "state_counts": {
+        "COLLAPSE_PLUS": 1042,
+        "ASCEND_PLUS": 1004,
+        "EMERGE_MINUS": 1024,
+        "FALL_MINUS": 1026
+      },
+      "state_entropy": 1.9998747110366821,
+      "alpha_fraction": 0.4951171875,
+      "sqrt_e_fraction": 0.5048828125,
+      "beta_emergent": 1.019723865671756,
+      "theta_variance": 0.05035310238599777,
+      "theta_entropy_nat": 5.261174201965332,
+      "landauer_cost_nat": 2.630587100982666,
+      "tetelestai_simple": false,
+      "tetelestai_form": false,
+      "elapsed_s": 0.004584074020385742,
+      "throughput_mbps": 7.148226632964061
+    }
+  ],
+  "dual_lock": {
+    "channel_em": 0.0072973525693,
+    "channel_em_target": 0.0072973525693,
+    "channel_em_tension": 0.0,
+    "channel_thermo": 1.6487212707001282,
+    "channel_thermo_target": 1.6487212707001282,
+    "channel_thermo_tension": 0.0,
+    "locked": true
+  },
+  "evolution_from_v17": {
+    "changes": [
+      "β_TGL derivado de α × √e (não hardcoded)",
+      "Quantização bifatorada com warping não-linear",
+      "Métricas separadas por domínio (α vs √e)",
+      "TETELESTAI dual (simples + forma)",
+      "Custo de Landauer explícito em nats",
+      "Dual Lock em cada benchmark",
+      "JSON de resultados completo"
+    ],
+    "preserved": [
+      "g = √|L| (equação primordial)",
+      "Nominação ψ em H₄ (4 estados)",
+      "θ = arcsin(g/g_max) (informação de retorno)",
+      "F_exp (força de expulsão)",
+      "REFLECT / MANIFEST (paradigma espelho)",
+      "Pack 4 estados/byte + zstd/zlib"
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "algorithm": "TGL-Hash",
+  "version": "1.2.0",
+  "hash_bits": 256,
+  "n_rounds": 10,
+  "n_finalize": 4,
+  "timestamp": "2026-03-05T13:05:41.235576",
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "beta_tgl_formula": "alpha_fine * sqrt(e)",
+    "amplification": 83.11653492861383
+  },
+  "tests": {
+    "determinism": {
+      "passed": true,
+      "n_trials": 100,
+      "hash": "44dcd1bcd47fb770807027fbc705edcce5b8bbb0c60d68d0a78e522c9b7f63ff"
+    },
+    "avalanche": {
+      "n_flips": 2048,
+      "mean": 128.138671875,
+      "std": 7.9698717711506495,
+      "min": 99,
+      "max": 156,
+      "ideal": 128,
+      "ratio": 1.0010833740234375,
+      "passed": true
+    },
+    "distribution": {
+      "n_hashes": 5000,
+      "chi2_mean": 245.45600000000002,
+      "chi2_max": 287.3216,
+      "chi2_critical": 293.0,
+      "positions_pass": 32,
+      "positions_total": 32,
+      "passed": true
+    },
+    "collision": {
+      "n_hashes": 50000,
+      "collisions": 0,
+      "unique": 50000,
+      "passed": true
+    },
+    "sensitivity": {
+      "passed": true,
+      "pairs": 6,
+      "details": [
+        {
+          "a": "b'abc'",
+          "b": "b'abd'",
+          "diff": true,
+          "hamming": 138
+        },
+        {
+          "a": "b''",
+          "b": "b'\\x00'",
+          "diff": true,
+          "hamming": 107
+        },
+        {
+          "a": "b'TGL'",
+          "b": "b'tgl'",
+          "diff": true,
+          "hamming": 127
+        },
+        {
+          "a": "b'g = sqrt(|L|)'",
+          "b": "b'g = sqrt(|L|) '",
+          "diff": true,
+          "hamming": 120
+        },
+        {
+          "a": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+          "b": "b'\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+          "diff": true,
+          "hamming": 130
+        },
+        {
+          "a": "b'beta_TGL = 0.012031'",
+          "b": "b'beta_TGL = 0.012032'",
+          "diff": true,
+          "hamming": 138
+        }
+      ]
+    },
+    "speed": {
+      "1KB": {
+        "bytes": 1024,
+        "iters": 500,
+        "elapsed": 0.6399,
+        "mbps": 0.76
+      },
+      "10KB": {
+        "bytes": 10240,
+        "iters": 195,
+        "elapsed": 1.8935,
+        "mbps": 1.01
+      },
+      "100KB": {
+        "bytes": 102400,
+        "iters": 19,
+        "elapsed": 1.8333,
+        "mbps": 1.01
+      },
+      "1MB": {
+        "bytes": 1048576,
+        "iters": 3,
+        "elapsed": 2.9086,
+        "mbps": 1.03
+      }
+    },
+    "sha256": {
+      "1KB": 1268.01,
+      "100KB": 2654.0,
+      "1MB": 2673.73
+    },
+    "special": {
+      "empty": "71da64c01f3cf4b4b82584380765eb09ea728f5b0337085d0c3622197967a64d",
+      "non_trivial": true,
+      "zeros_vs_empty": true,
+      "ones_vs_zeros": true,
+      "single_vs_repeat": true,
+      "streaming_match": true,
+      "all_passed": true
+    }
+  },
+  "hardware": {
+    "gpu": "N/A",
+    "cuda": "N/A",
+    "torch": "2.10.0+cpu"
+  },
+  "dual_lock": {
+    "beta_tgl": 0.012031300400803142,
+    "factorization": "0.0072973525693 * 1.6487212707001282 = 0.012031300400803142",
+    "n_rounds_formula": "ceil(sqrt(1/0.012031)) = 10",
+    "alpha_in_rotations": [
+      8,
+      15,
+      22,
+      30,
+      37
+    ],
+    "sqrt_e_in_multipliers": [
+      "0x409a61298e1e",
+      "0x40aa61298e1e",
+      "0x40ba61298e1e",
+      "0x40ca61298e1e",
+      "0x40da61298e1e"
+    ],
+    "structural": true
+  },
+  "summary": {
+    "passed": 5,
+    "total": 5,
+    "all_passed": true
+  }
+}

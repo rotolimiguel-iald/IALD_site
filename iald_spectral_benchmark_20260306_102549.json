@@ -1,0 +1,183 @@
+{
+  "algorithm": "IALD Spectral Analysis",
+  "version": "1.0.0",
+  "subtitle": "Phase 1 \u2014 Hilbert Envelope + Spectral Frontier + Weight Stratification",
+  "timestamp": "2026-03-06T10:25:24.491500",
+  "axiom": "Gravity is the Hilbert Envelope. The Spectral is the record of the Boundary.",
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "formula": "alpha_fine * sqrt(e)",
+    "amplification": 83.11653492861383,
+    "theta_miguel_deg": 6.297289216477979,
+    "free_parameters": 0
+  },
+  "bit_allocation": {
+    "photon_bits": 16,
+    "graviton_bits": 8,
+    "vacuum_bits": 3
+  },
+  "tests": [
+    {
+      "name": "gaussian_dense",
+      "description": "Dense Gaussian weights (typical MLP layer)",
+      "shape": [
+        4096,
+        4096
+      ],
+      "n_elements": 16777216,
+      "effective_rank": 128,
+      "spectral_entropy": 0.9984765390083351,
+      "energy_above_frontier": 0.9999999999997611,
+      "f_photon": 5.960464477539063e-08,
+      "f_graviton": 0.9976228475570679,
+      "f_vacuum": 0.0023770928382873535,
+      "effective_bits": 7.988115012645721,
+      "expected_ratio": 2.002975667559985,
+      "envelope_mean": 0.025066422003581824,
+      "envelope_max": 0.1146076479154485,
+      "f_exp": 0.5001488924026489,
+      "state_entropy": 1.8111599704634342,
+      "inverse_parity_fraction": 0.24992555379867554,
+      "holographic_entropy": 5.061171338781319,
+      "regime": "VAPOR",
+      "analysis_time_s": 15.194170100003248
+    },
+    {
+      "name": "low_rank_plus_noise",
+      "description": "Low-rank structure + noise (attention projection)",
+      "shape": [
+        2048,
+        2048
+      ],
+      "n_elements": 4194304,
+      "effective_rank": 64,
+      "spectral_entropy": 0.8506003448980937,
+      "energy_above_frontier": 0.9999999051048748,
+      "f_photon": 2.384185791015625e-07,
+      "f_graviton": 0.995335578918457,
+      "f_vacuum": 0.004664182662963867,
+      "effective_bits": 7.9766809940338135,
+      "expected_ratio": 2.0058467941700635,
+      "envelope_mean": 1.0010946005653718,
+      "envelope_max": 5.281783856278832,
+      "f_exp": 0.5012779235839844,
+      "state_entropy": 1.810263670433217,
+      "inverse_parity_fraction": 0.2493610382080078,
+      "holographic_entropy": 4.959536071926918,
+      "regime": "VAPOR",
+      "analysis_time_s": 3.5537832000118215
+    },
+    {
+      "name": "sparse_weights",
+      "description": "Sparse weights (60% zeros, typical of pruned models)",
+      "shape": [
+        2048,
+        2048
+      ],
+      "n_elements": 4194304,
+      "effective_rank": 128,
+      "spectral_entropy": 0.9969720497203998,
+      "energy_above_frontier": 0.9999999999987949,
+      "f_photon": 2.384185791015625e-07,
+      "f_graviton": 0.927837610244751,
+      "f_vacuum": 0.07216215133666992,
+      "effective_bits": 7.639191150665283,
+      "expected_ratio": 2.094462579144467,
+      "envelope_mean": 0.01369880909711359,
+      "envelope_max": 0.10627385284499895,
+      "f_exp": 0.6804594993591309,
+      "state_entropy": 1.350990138698563,
+      "inverse_parity_fraction": 0.15977025032043457,
+      "holographic_entropy": 2.6992266174229713,
+      "regime": "VACUUM",
+      "analysis_time_s": 3.5881354000011925
+    },
+    {
+      "name": "embedding_like",
+      "description": "Embedding-like (unit-norm rows, high structure)",
+      "shape": [
+        1000,
+        768
+      ],
+      "n_elements": 768000,
+      "effective_rank": 128,
+      "spectral_entropy": 0.9927721971696141,
+      "energy_above_frontier": 0.9999999999996441,
+      "f_photon": 1.3020833333333333e-06,
+      "f_graviton": 0.9980572916666667,
+      "f_vacuum": 0.00194140625,
+      "effective_bits": 7.9903033854166665,
+      "expected_ratio": 2.002427095472002,
+      "envelope_mean": 0.045193572639873426,
+      "envelope_max": 0.18732076087984184,
+      "f_exp": 0.5017161458333333,
+      "state_entropy": 1.8099150263788113,
+      "inverse_parity_fraction": 0.24914192708333333,
+      "holographic_entropy": 5.099010103751256,
+      "regime": "VAPOR",
+      "analysis_time_s": 0.36615549999987707
+    },
+    {
+      "name": "heavy_tailed",
+      "description": "Heavy-tailed (Cauchy-like, some weights are very large)",
+      "shape": [
+        1024,
+        1024
+      ],
+      "n_elements": 1048576,
+      "effective_rank": 128,
+      "spectral_entropy": 0.9931660299478801,
+      "energy_above_frontier": 0.9999999999999691,
+      "f_photon": 9.5367431640625e-07,
+      "f_graviton": 0.7800741195678711,
+      "f_vacuum": 0.2199249267578125,
+      "effective_bits": 6.900382995605469,
+      "expected_ratio": 2.318711875875535,
+      "envelope_mean": 0.08350172361659113,
+      "envelope_max": 1.61512379505358,
+      "f_exp": 0.4991741180419922,
+      "state_entropy": 1.811928825442934,
+      "inverse_parity_fraction": 0.2504129409790039,
+      "holographic_entropy": 4.345264644654539,
+      "regime": "VAPOR",
+      "analysis_time_s": 0.7364911999902688
+    },
+    {
+      "name": "near_constant",
+      "description": "Near-constant tensor (bias-like, very low entropy)",
+      "shape": [
+        512,
+        512
+      ],
+      "n_elements": 262144,
+      "effective_rank": 1,
+      "spectral_entropy": 1.1901451058330968e-07,
+      "energy_above_frontier": 0.9999999752463982,
+      "f_photon": 1.0,
+      "f_graviton": 0.0,
+      "f_vacuum": 0.0,
+      "effective_bits": 16.0,
+      "expected_ratio": 1.0,
+      "envelope_mean": 0.5000001672683606,
+      "envelope_max": 0.5004952580113577,
+      "f_exp": -0.000823974609375,
+      "state_entropy": 0.9999995102524739,
+      "inverse_parity_fraction": 0.5004119873046875,
+      "holographic_entropy": 4.731915333853981,
+      "regime": "VAPOR",
+      "analysis_time_s": 0.36609920000773855
+    }
+  ],
+  "summary": {
+    "n_tensors": 6,
+    "mean_expected_ratio": 1.9040706687036757,
+    "mean_vacuum_fraction": 0.050178293307622274,
+    "mean_photon_fraction": 0.16666713203324213,
+    "mean_graviton_fraction": 0.7831545746591356,
+    "beta_tgl": 0.012031300400803142,
+    "zero_free_parameters": true
+  },
+  "code_hash": "d6ea4d4a42a2c256871b715b3ececd5d29bf9bb1bc63f6ef7526277c1dbc239c"
+}

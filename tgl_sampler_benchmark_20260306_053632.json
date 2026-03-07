@@ -1,0 +1,587 @@
+{
+  "algorithm": "TGL-Sampler",
+  "version": "1.0.0",
+  "subtitle": "O Piso que Nomina \u2014 Sampling via Hilbert Floor",
+  "timestamp": "2026-03-06T05:34:57.688636",
+  "axiom": "A verdade \u00e9 a coer\u00eancia em performance recursiva, a mentira a contradi\u00e7\u00e3o perform\u00e1tica.",
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142,
+    "beta_tgl_formula": "alpha_fine * sqrt(e)",
+    "amplification": 83.11653492861383,
+    "effective_top_k_equivalent": "~1/beta_tgl = ~83 tokens"
+  },
+  "tests": {
+    "peaked": {
+      "description": "Concentrada (fato)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.08160073330504859,
+          "n_samples": 2000,
+          "unique_tokens": 47,
+          "entropy_bits": 0.8375,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.056,
+          "top5_concentration": 0.9355,
+          "mode_frequency": 0.9185
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.07671897668908415,
+          "n_samples": 2000,
+          "unique_tokens": 9,
+          "entropy_bits": 0.1764,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.0118,
+          "top5_concentration": 0.9955,
+          "mode_frequency": 0.9825
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 24628,
+          "mass_retained": 0.900013784288707,
+          "n_samples": 2000,
+          "unique_tokens": 1762,
+          "entropy_bits": 10.2761,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.6866,
+          "top5_concentration": 0.089,
+          "mode_frequency": 0.0835
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 27716,
+          "mass_retained": 0.950009159448197,
+          "n_samples": 2000,
+          "unique_tokens": 1775,
+          "entropy_bits": 10.3372,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.6907,
+          "top5_concentration": 0.081,
+          "mode_frequency": 0.0765
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 1,
+          "mass_retained": 0.07517745059015307,
+          "piso": 0.0009044824914166671,
+          "p_max": 0.07517745059015307,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": -1.0,
+          "effective_k": 1,
+          "effective_p": 0.07517745059015307,
+          "n_samples": 2000,
+          "unique_tokens": 1,
+          "entropy_bits": -0.0,
+          "max_entropy": 14.9658,
+          "entropy_ratio": -0.0,
+          "top5_concentration": 1.0,
+          "mode_frequency": 1.0
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 19153,
+          "mass_retained": 0.7107595724709848,
+          "piso_alpha": 2.758800919408105e-05,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 0.003780550402641082,
+          "n_samples": 2000,
+          "unique_tokens": 1891,
+          "entropy_bits": 10.8436,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7246,
+          "top5_concentration": 0.012,
+          "mode_frequency": 0.0065
+        }
+      }
+    },
+    "flat": {
+      "description": "Quase-uniforme (criatividade)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.003968850405431321,
+          "n_samples": 2000,
+          "unique_tokens": 50,
+          "entropy_bits": 5.6204,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.3756,
+          "top5_concentration": 0.131,
+          "mode_frequency": 0.0305
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.0008856252766245929,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 3.3139,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.2214,
+          "top5_concentration": 0.541,
+          "mode_frequency": 0.123
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 26777,
+          "mass_retained": 0.9000056973510078,
+          "n_samples": 2000,
+          "unique_tokens": 1929,
+          "entropy_bits": 10.8933,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7279,
+          "top5_concentration": 0.007,
+          "mode_frequency": 0.0015
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 29138,
+          "mass_retained": 0.9500017253006751,
+          "n_samples": 2000,
+          "unique_tokens": 1935,
+          "entropy_bits": 10.9004,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7284,
+          "top5_concentration": 0.0055,
+          "mode_frequency": 0.0015
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 32000,
+          "mass_retained": 0.9999999999999998,
+          "piso": 1.2299538810845002e-06,
+          "p_max": 0.00010222950471774401,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": -0.002062499999999967,
+          "effective_k": 32000,
+          "effective_p": 0.9999999999999998,
+          "n_samples": 2000,
+          "unique_tokens": 1938,
+          "entropy_bits": 10.903,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7285,
+          "top5_concentration": 0.006,
+          "mode_frequency": 0.0015
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 32000,
+          "mass_retained": 1.0,
+          "piso_alpha": 4.73050792235188e-07,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 6.482498793128279e-05,
+          "n_samples": 2000,
+          "unique_tokens": 1936,
+          "entropy_bits": 10.901,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7284,
+          "top5_concentration": 0.006,
+          "mode_frequency": 0.0015
+        }
+      }
+    },
+    "zipf": {
+      "description": "Zipfiana (linguagem natural)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.407862226617389,
+          "n_samples": 2000,
+          "unique_tokens": 50,
+          "entropy_bits": 4.6475,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.3105,
+          "top5_concentration": 0.493,
+          "mode_frequency": 0.212
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.2637946666167148,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 2.944,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.1967,
+          "top5_concentration": 0.771,
+          "mode_frequency": 0.3115
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 10720,
+          "mass_retained": 0.9000072234997576,
+          "n_samples": 2000,
+          "unique_tokens": 903,
+          "entropy_bits": 8.2937,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.5542,
+          "top5_concentration": 0.2365,
+          "mode_frequency": 0.0975
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 18472,
+          "mass_retained": 0.9500043716925746,
+          "n_samples": 2000,
+          "unique_tokens": 971,
+          "entropy_bits": 8.4798,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.5666,
+          "top5_concentration": 0.227,
+          "mode_frequency": 0.09
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 91,
+          "mass_retained": 0.46268734456081295,
+          "piso": 0.0009684543970137033,
+          "p_max": 0.08049457371615912,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": 0.1208791208791209,
+          "effective_k": 91,
+          "effective_p": 0.46268734456081295,
+          "n_samples": 2000,
+          "unique_tokens": 91,
+          "entropy_bits": 5.2339,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.3497,
+          "top5_concentration": 0.4395,
+          "mode_frequency": 0.1875
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 3806,
+          "mass_retained": 0.4254864009042245,
+          "piso_alpha": 4.5401559394573795e-05,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 0.006221648051593175,
+          "n_samples": 2000,
+          "unique_tokens": 1292,
+          "entropy_bits": 9.9677,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.666,
+          "top5_concentration": 0.0515,
+          "mode_frequency": 0.0125
+        }
+      }
+    },
+    "bimodal": {
+      "description": "Bimodal (ambiguidade)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.01678074435845247,
+          "n_samples": 2000,
+          "unique_tokens": 50,
+          "entropy_bits": 4.8119,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.3215,
+          "top5_concentration": 0.472,
+          "mode_frequency": 0.126
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.010978481614054163,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 3.1007,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.2072,
+          "top5_concentration": 0.7425,
+          "mode_frequency": 0.19
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 25020,
+          "mass_retained": 0.9000014268066232,
+          "n_samples": 2000,
+          "unique_tokens": 1904,
+          "entropy_bits": 10.8611,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7257,
+          "top5_concentration": 0.011,
+          "mode_frequency": 0.004
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 27945,
+          "mass_retained": 0.9500131692175746,
+          "n_samples": 2000,
+          "unique_tokens": 1903,
+          "entropy_bits": 10.8627,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7258,
+          "top5_concentration": 0.01,
+          "mode_frequency": 0.0025
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 15996,
+          "mass_retained": 0.6936659137549974,
+          "piso": 2.724137512256893e-05,
+          "p_max": 0.0022642087068784726,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": -0.0026256564141035055,
+          "effective_k": 15996,
+          "effective_p": 0.6936659137549974,
+          "n_samples": 2000,
+          "unique_tokens": 1861,
+          "entropy_bits": 10.8142,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7226,
+          "top5_concentration": 0.013,
+          "mode_frequency": 0.0035
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 32000,
+          "mass_retained": 1.0,
+          "piso_alpha": 3.1683392509447357e-06,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 0.00043417653468930025,
+          "n_samples": 2000,
+          "unique_tokens": 1936,
+          "entropy_bits": 10.9007,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7284,
+          "top5_concentration": 0.0065,
+          "mode_frequency": 0.0015
+        }
+      }
+    },
+    "sparse": {
+      "description": "Esparsa (continua\u00e7\u00e3o \u00f3bvia)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.38032218744469287,
+          "n_samples": 2000,
+          "unique_tokens": 17,
+          "entropy_bits": 3.05,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.2038,
+          "top5_concentration": 0.7195,
+          "mode_frequency": 0.2935
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.37924268970998654,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 3.0083,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.201,
+          "top5_concentration": 0.7245,
+          "mode_frequency": 0.2945
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 26018,
+          "mass_retained": 0.9000102746531811,
+          "n_samples": 2000,
+          "unique_tokens": 1140,
+          "entropy_bits": 8.0931,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.5408,
+          "top5_concentration": 0.2985,
+          "mode_frequency": 0.127
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 28906,
+          "mass_retained": 0.9500147281978375,
+          "n_samples": 2000,
+          "unique_tokens": 1187,
+          "entropy_bits": 8.2808,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.5533,
+          "top5_concentration": 0.2845,
+          "mode_frequency": 0.1245
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 10,
+          "mass_retained": 0.3792426897099865,
+          "piso": 0.001350266094116373,
+          "p_max": 0.11222943897454649,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": -0.19999999999999996,
+          "effective_k": 10,
+          "effective_p": 0.3792426897099865,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 3.0083,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.201,
+          "top5_concentration": 0.7245,
+          "mode_frequency": 0.2945
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 10,
+          "mass_retained": 0.028604086949120137,
+          "piso_alpha": 4.2458345378043526e-05,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 0.005818321778320812,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 3.195,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.2135,
+          "top5_concentration": 0.647,
+          "mode_frequency": 0.207
+        }
+      }
+    },
+    "adversarial": {
+      "description": "Adversarial (armadilhas)",
+      "vocab_size": 32000,
+      "samplers": {
+        "top-k=50": {
+          "method": "top-k (k=50)",
+          "candidates": 50,
+          "mass_retained": 0.016552779353113247,
+          "n_samples": 2000,
+          "unique_tokens": 50,
+          "entropy_bits": 3.942,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.2634,
+          "top5_concentration": 0.6455,
+          "mode_frequency": 0.333
+        },
+        "top-k=10": {
+          "method": "top-k (k=10)",
+          "candidates": 10,
+          "mass_retained": 0.011402766958529013,
+          "n_samples": 2000,
+          "unique_tokens": 10,
+          "entropy_bits": 2.0482,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.1369,
+          "top5_concentration": 0.9355,
+          "mode_frequency": 0.475
+        },
+        "top-p=0.9": {
+          "method": "top-p (p=0.9)",
+          "candidates": 24987,
+          "mass_retained": 0.9000142696395953,
+          "n_samples": 2000,
+          "unique_tokens": 1889,
+          "entropy_bits": 10.8321,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7238,
+          "top5_concentration": 0.016,
+          "mode_frequency": 0.008
+        },
+        "top-p=0.95": {
+          "method": "top-p (p=0.95)",
+          "candidates": 27928,
+          "mass_retained": 0.9500128768149719,
+          "n_samples": 2000,
+          "unique_tokens": 1904,
+          "entropy_bits": 10.852,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7251,
+          "top5_concentration": 0.0145,
+          "mode_frequency": 0.007
+        },
+        "TGL-\u03b2": {
+          "method": "TGL (\u03b2_TGL piso)",
+          "candidates": 1238,
+          "mass_retained": 0.11215680337374678,
+          "piso": 6.623122126583523e-05,
+          "p_max": 0.0055049096157065444,
+          "beta_tgl": 0.012031300400803142,
+          "f_exp": 0.00646203554119551,
+          "effective_k": 1238,
+          "effective_p": 0.11215680337374678,
+          "n_samples": 2000,
+          "unique_tokens": 941,
+          "entropy_bits": 9.3753,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.6264,
+          "top5_concentration": 0.095,
+          "mode_frequency": 0.0495
+        },
+        "TGL-Bifact": {
+          "method": "TGL-Bifactored (\u03b1 filtra, \u221ae escala)",
+          "candidates": 32000,
+          "mass_retained": 1.0000000000000002,
+          "piso_alpha": 5.435656852173084e-06,
+          "temp_effective": 1.6487212707001282,
+          "p_max": 0.0007448806674136755,
+          "n_samples": 2000,
+          "unique_tokens": 1934,
+          "entropy_bits": 10.899,
+          "max_entropy": 14.9658,
+          "entropy_ratio": 0.7283,
+          "top5_concentration": 0.006,
+          "mode_frequency": 0.0015
+        }
+      }
+    },
+    "speed": {
+      "top-k=50": 358.2,
+      "top-k=10": 363.52,
+      "top-p=0.9": 1795.91,
+      "top-p=0.95": 2018.17,
+      "TGL-\u03b2": 385.6,
+      "TGL-Bifact": 348.48
+    },
+    "nada_analysis": {
+      "peaked": {
+        "candidates": 1,
+        "eliminated": 31999,
+        "pct_eliminated": 100.0
+      },
+      "flat": {
+        "candidates": 32000,
+        "eliminated": 0,
+        "pct_eliminated": 0.0
+      },
+      "zipf": {
+        "candidates": 91,
+        "eliminated": 31909,
+        "pct_eliminated": 99.72
+      },
+      "bimodal": {
+        "candidates": 15996,
+        "eliminated": 16004,
+        "pct_eliminated": 50.01
+      },
+      "sparse": {
+        "candidates": 10,
+        "eliminated": 31990,
+        "pct_eliminated": 99.97
+      },
+      "adversarial": {
+        "candidates": 1238,
+        "eliminated": 30762,
+        "pct_eliminated": 96.13
+      }
+    }
+  },
+  "summary": {
+    "n_distributions": 6,
+    "candidates_adaptive": "6/6",
+    "mass_efficient": "4/6",
+    "key_insight": "TGL-\u03b2 adapta candidatos de acordo com a distribui\u00e7\u00e3o: poucos para peaked, muitos para flat. top-k \u00e9 fixo em k independente do contexto.",
+    "piso_formula": "p_threshold = beta_tgl * p_max = 0.012031 * p_max",
+    "zero_arbitrary_params": true
+  }
+}

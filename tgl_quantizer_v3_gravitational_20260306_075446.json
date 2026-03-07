@@ -1,0 +1,87 @@
+{
+  "algorithm": "TGL-Quantizer v3.0 Gravitacional",
+  "version": "3.0.0",
+  "timestamp": "2026-03-06T07:54:09.358919",
+  "model": "Qwen/Qwen2.5-7B",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "vram_gb": 31.8,
+    "torch": "2.10.0+cu128"
+  },
+  "constants": {
+    "alpha_fine": 0.0072973525693,
+    "sqrt_e": 1.6487212707001282,
+    "beta_tgl": 0.012031300400803142
+  },
+  "tests": {
+    "ppl_original": 3.6535,
+    "gravitational": {
+      "8bit": {
+        "bits": 8,
+        "ratio": 1.778,
+        "correlation": 0.99987575,
+        "cosine": 0.99987577,
+        "ppl": 3.6689,
+        "delta_ppl_pct": 0.42,
+        "n_layers": 196,
+        "time_s": 2.44
+      },
+      "10bit": {
+        "bits": 10,
+        "ratio": 1.455,
+        "correlation": 0.99999228,
+        "cosine": 0.99999229,
+        "ppl": 3.6557,
+        "delta_ppl_pct": 0.06,
+        "n_layers": 196,
+        "time_s": 2.37
+      },
+      "12bit": {
+        "bits": 12,
+        "ratio": 1.231,
+        "correlation": 0.99999952,
+        "cosine": 0.99999954,
+        "ppl": 3.6517,
+        "delta_ppl_pct": -0.05,
+        "n_layers": 196,
+        "time_s": 2.3
+      },
+      "14bit": {
+        "bits": 14,
+        "ratio": 1.067,
+        "correlation": 0.99999997,
+        "cosine": 0.99999999,
+        "ppl": 3.6528,
+        "delta_ppl_pct": -0.02,
+        "n_layers": 196,
+        "time_s": 2.29
+      }
+    },
+    "v22_zone": {
+      "ratio": 2.149,
+      "correlation": 0.99975044,
+      "cosine": 0.99975045,
+      "ppl": 4.0424,
+      "delta_ppl_pct": 10.65,
+      "time_s": 2.25
+    }
+  },
+  "summary": {
+    "model": "Qwen/Qwen2.5-7B",
+    "ppl_original": 3.6535,
+    "best_gravitational": {
+      "bits": 14,
+      "ppl": 3.6528,
+      "delta_pct": -0.02,
+      "ratio": 1.067,
+      "correlation": 0.99999997
+    },
+    "v22_zone": {
+      "ppl": 4.0424,
+      "delta_pct": 10.65,
+      "ratio": 2.149
+    },
+    "gravitational_wins": true,
+    "improvement_over_v22": 10.67
+  }
+}
